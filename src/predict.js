@@ -23,39 +23,11 @@ async function init(base) {
     //This array is encoded with index i = corresponding emotion. In dataset, 0 = Angry, 1 = Disgust, 2 = Fear, 3 = Happy, 4 = Sad, 5 = Surprise and 6 = Neutral
     category = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash'];
     //At which index in tensor we get the largest value ?
-    /* console.log("DOS");
-    pred.data()
-        .then((data) => {
-            console.log(data)
-            max_val = -1
-            max_val_index = -1
-            for (let i = 0; i < data.length; i++) {
-                if (data[i] > max_val) {
-                    max_val = data[i]
-                    max_val_index = i
-                }
-            }
-            response += category[max_val_index]
-            return response
-        });
- */
 
         var resultado = pred.dataSync();
         var mayor= resultado.indexOf(Math.max.apply(null,resultado));
         console.log(category[mayor]);
-        return category[mayor];
-
-        /* for (let i = 0; i < pred.data().length; i++) {
-            max_val = -1
-            max_val_index = -1
-            for (let i = 0; i < data.length; i++) {
-                if (data[i] > max_val) {
-                    max_val = data[i]
-                    max_val_index = i
-                }
-            }
-          } */
-        
+        return category[mayor];        
 }
 
 module.exports = {
