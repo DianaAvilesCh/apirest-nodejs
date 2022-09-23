@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const httpServer = require('http').createServer(app);
 const morgan = require('morgan');
 const ba64 = require("ba64");
 const pre = require('./predict');
@@ -28,4 +29,4 @@ app.post('/api/foto', async(req, res) => {
 });
 //node src/index.js  
 const port = process.env.port || 3000;
-app.listen(port, () => console.log(`Escuchando en puerto ${port}...`));
+httpServer.listen(port, () => console.log(`Escuchando en puerto ${port}...`));
