@@ -14,8 +14,7 @@ async function init(base) {
     console.log(IMAGE_FILE_PATH);
     
     const buf = fs.readFileSync(IMAGE_FILE_PATH);
-    const input = tf.node.decodeImage(buf);
-    var response = "";
+    const input = tf.node.decodePng(buf);
 
     pred = model.predict(input.expandDims(0).resizeNearestNeighbor([256,256]).toFloat());
 
@@ -41,7 +40,11 @@ async function init(base) {
         });
  */
 
-        console.log(pred.arraySync()[1]);
+        var resultado = pred.dataSync();
+        var mayor= resultado.indexOf(Math.max.apply(null,resultado));
+        console.log(category[mayor]);
+        return category[mayor];
+
         /* for (let i = 0; i < pred.data().length; i++) {
             max_val = -1
             max_val_index = -1

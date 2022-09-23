@@ -23,6 +23,7 @@ app.post('/api/foto', async(req, res) => {
     data_url = data;
     ba64.writeImageSync(`./image/image${now}`, data_url);
     respuesta = await pre.init(`/image/image${now}.PNG`);
+    //respuesta = await pre.init(`/image/images09132022-085916.png`);
     res.send(respuesta);
 });
 //node src/index.js  
