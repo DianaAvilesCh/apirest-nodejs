@@ -9,9 +9,11 @@ const pre = require('./predict');
 app.use(morgan('dev'));
 
 //starting th server
+const port = process.env.PORT || 3000;
+
 app.use(express.json());
 
-//const foto =[]
+//routes
 
 app.get('/',(req, res) =>{
     res.send('Node js');
@@ -27,6 +29,4 @@ app.post('/api/foto', async(req, res) => {
     //respuesta = await pre.init(`/image/images09132022-085916.png`);
     res.send(respuesta);
 });
-//node src/index.js  
-const port = process.env.port || 3000;
-httpServer.listen(port, () => console.log(`Escuchando en puerto ${port}...`));
+app.listen(port, () => console.log(`Escuchando en puerto ${port}...`));
