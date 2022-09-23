@@ -16,15 +16,14 @@ app.get('/',(req, res) =>{
     res.send('Node js');
 });
 
-app.post('/api/foto', (req, res) => {
+app.post('/api/foto', async(req, res) => {
     var data = req.body.fotografias;
     var moment = require('moment');
     var now = moment().format("DDMMYYYY-HHmmss");
     data_url = data;
-    var nombre = `./image/image${now}`;
-    ba64.writeImageSync(nombre, data_url);
-    pre.init(data);
-    res.send("hpla");
+    ba64.writeImageSync(`./image/image${now}`, data_url);
+    respuesta = await pre.init(`/image/image${now}.PNG`);
+    res.send(respuesta);
 });
 //node src/index.js  
 const port = process.env.port || 3000;
